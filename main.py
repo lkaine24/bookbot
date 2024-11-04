@@ -10,9 +10,25 @@ def get_word_count(words):
     wc = len(words.split())
     return wc
 
+def get_char_count(words):
+    lower_chars = words.lower()
+
+    char_count = {}
+
+    for char in lower_chars:
+        if char not in char_count and char.isalnum() == True and char.isdigit() == False:
+            char_count[char] = 1
+        elif char in char_count and char.isalnum() == True and char.isdigit() == False:
+            char_count[char] += 1
+
+    return char_count
+
+
 def main():
     words = read_book("books/frankenstein.txt")
-    print(get_word_count(words))
+    word_count = get_word_count(words)
+    char_count = get_char_count(words)
+    print(char_count)
 
 if __name__ == '__main__':
     main()
